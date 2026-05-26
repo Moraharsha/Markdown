@@ -338,3 +338,159 @@ The platform can transfer data between many types of systems, such as:
 - Application to Application  
 
 This flexibility allows organizations to connect different tools and systems easily.
+
+# Schema Mapping and Configuration
+
+## Manual Mapping
+
+Manual mapping means choosing exactly how data should move from the source to the destination.
+
+- You can decide which source fields should go to which destination fields.
+- This gives better control over data migration based on business needs.
+- If source and destination field names and data types are the same, the platform can automatically map them.
+- One source table can also send data to multiple destination tables if needed.
+
+### Example
+
+| Source Field | Destination Field |
+|---|---|
+| customer_name | cust_name |
+| phone_number | mobile_no |
+
+Here, data from the source fields is manually connected to destination fields.
+
+---
+
+## Source Replication
+
+Source replication means creating an exact copy of the source table in the destination system.
+
+- The platform automatically scans the source table structure.
+- It creates the same fields and data types in the destination table.
+- If the destination database does not support a particular data type, the platform automatically chooses a compatible alternative.
+- This is the simplest and fastest method when you want the destination to look exactly like the source.
+
+### Example
+
+If the source table has:
+- Employee_ID
+- Employee_Name
+- Salary
+
+The same structure will automatically be created in the destination database.
+
+# Pipeline Settings and Configuration
+
+## Pipeline Types
+
+### Real-time Pipelines
+These pipelines work continuously.  
+
+Whenever data changes in the source system (insert, update, or delete), the changes are immediately copied to the destination system.
+
+**Example:**  
+If a new customer is added in the source database, it is instantly updated in the target database.
+
+---
+
+### Scheduled Pipelines
+These pipelines run only at specific times based on a schedule.
+
+They:
+- Start automatically at the scheduled time
+- Transfer data for a certain duration
+- Stop after completion
+- Wait for the next schedule
+
+**Example:**  
+A pipeline can run every day at 10 PM to move daily sales data.
+
+---
+
+### Schedule Configuration
+Users can configure how often the pipeline should run:
+- Every few minutes
+- Hourly
+- Daily
+- Weekly
+
+An optional end date can also be added for temporary projects.
+
+---
+
+# Ingestion Modes
+
+## Historical Only
+This mode transfers all existing old data one time.
+
+After the data transfer is completed, the pipeline automatically stops.
+
+**Used for:**  
+Initial data migration or backup.
+
+---
+
+## Live Only
+This mode transfers only new changes happening after the pipeline starts.
+
+It monitors:
+- New records
+- Updated records
+- Deleted records
+
+It uses **upsert logic**, meaning:
+- Update the record if it already exists
+- Insert the record if it does not exist
+
+---
+
+## Historical and Live
+This mode combines both approaches.
+
+### Steps:
+1. Transfer all old existing data
+2. Continue monitoring and transferring new changes in real time
+
+**Most commonly used mode** for production systems.
+
+---
+
+# Data Capture Settings
+
+## Audit Logging
+The platform keeps logs of all pipeline activities.
+
+Logs include:
+- Number of records transferred
+- Success and failure details
+- Event IDs
+- Transfer history
+
+This helps with monitoring and troubleshooting.
+
+---
+
+## Raw Record Capture
+Users can store the actual data records during transfer.
+
+This includes:
+- Successful records
+- Failed records
+- Skipped records
+
+Useful for:
+- Debugging
+- Auditing
+- Compliance checks
+
+---
+
+## Selective Recording
+By default, only failed records are stored.
+
+But users can configure the system to capture:
+- Only failed records
+- All records
+- Specific record types
+
+based on business or audit requirements.
