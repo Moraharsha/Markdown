@@ -271,9 +271,6 @@ Transform / Clean Data
      ↓
 Load into Target System
 ```
-
----
-
 # Simple Summary
 
 The UnifyApps Data Platform helps companies move, clean, standardize, and manage data between multiple systems using data pipelines and ETL processes.
@@ -286,8 +283,6 @@ The curriculum covers the extensive range of supported data sources including da
 
 Practical exercises will involve creating pipelines between popular databases like Oracle and Microsoft SQL Server. By completion, students will confidently create basic pipelines and understand the importance of proper connection management.
 
----
-
 ## What is a Data Pipeline?
 
 A data pipeline is a process used to move data from one system to another automatically.
@@ -299,8 +294,6 @@ It follows the ETL methodology:
 - **Load** → Store the data into the target system
 
 Example:
-
-```text
 Oracle Database → Pipeline → Microsoft SQL Server
 
 # Platform Components
@@ -359,8 +352,6 @@ Manual mapping means choosing exactly how data should move from the source to th
 
 Here, data from the source fields is manually connected to destination fields.
 
----
-
 ## Source Replication
 
 Source replication means creating an exact copy of the source table in the destination system.
@@ -390,9 +381,6 @@ Whenever data changes in the source system (insert, update, or delete), the chan
 
 **Example:**  
 If a new customer is added in the source database, it is instantly updated in the target database.
-
----
-
 ### Scheduled Pipelines
 These pipelines run only at specific times based on a schedule.
 
